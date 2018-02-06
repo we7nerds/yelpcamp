@@ -28,7 +28,9 @@
                     <h4><a href=""><%= campground.name %></a></h4>
                     <p><%= campground.description %></p>
                     <p>
-                        <em>Submitted by: <%= campground.author.username %></em>
+                        <em>Submitted by: <%= campground.author.username %></em>    <% if (campground.editor.username) { %>
+                            |   <em>Edited by: <%= campground.editor.username %></em>    
+                            <% } %>
                     </p>
                     <% if (currentUser && campground.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) { %>
                         <a href="/campgrounds/<%= campground._id %>/edit" class="btn btn-xs btn-warning">Edit</a>

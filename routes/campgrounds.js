@@ -80,7 +80,9 @@ router.get("/:id/edit", middleware.checkCampgroundOwnership, function(req, res) 
 // UPDATE CAMPGROUND ROUTE
 router.put("/:id", middleware.checkCampgroundOwnership, function(req, res) {
     // find and update the correct campground
-    Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updatedCampground) {
+    var campgroundToEdit = req.body.campground;
+    campgroundToEdit.editor = {id: req.user._id, username: req.user.username};
+    Campground.findByIdAndUpdate(req.params.id, campgroundToEdit, function(err, updatedCampground) {
         if (err) {
             req.flash("error", err.message);
             res.redirect('/campgrounds');
