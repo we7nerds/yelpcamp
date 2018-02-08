@@ -33,19 +33,23 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
         username: req.user.username
     };
     geocoder.geocode(req.body.location, function(err, data) {
-        var lat = data.results[0].geometry.location.lat;
-        var lng = data.results[0].geometry.location.lng;
-        var location = data.results[0].formatted_address;
-        var newCampground = {name: name, price: price, image: image, description: desc, author: author, location: location, lat: lat, lng: lng};
-        // Create a new campground and save to DB
-        Campground.create(newCampground, function(err, newlyCreated){
-            if(err){
-                console.log(err);
-            } else {
-                // redirect back to campgrounds url
-                res.redirect("/campgrounds");
-            }
-        });
+        if (err) {
+            console.log(err);
+        } else {
+            var lat = data.results[0].geometry.location.lat;
+            var lng = data.results[0].geometry.location.lng;
+            var location = data.results[0].formatted_address;
+            var newCampground = {name: name, price: price, image: image, description: desc, author: author, location: location, lat: lat, lng: lng};
+            // Create a new campground and save to DB
+            Campground.create(newCampground, function(err, newlyCreated){
+                if(err){
+                    console.log(err);
+                } else {
+                    // redirect back to campgrounds url
+                    res.redirect("/campgrounds");
+                }
+            });
+        }
     });
     
 });

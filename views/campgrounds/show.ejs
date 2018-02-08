@@ -29,7 +29,7 @@
                     <h4><a href=""><%= campground.name %></a></h4>
                     <p><%= campground.description %></p>
                     <p>
-                        <em>Submitted by: <%= campground.author.username %></em>    <% if (campground.editor.username) { %>
+                        <em>Submitted by: <a href="/users/<%= campground.author.id%>"><%= campground.author.username %></a></em>    <% if (campground.editor.username) { %>
                             |   <em>Edited by: <%= campground.editor.username %></em>    
                             <% } %>
                     </p>
