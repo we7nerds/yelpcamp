@@ -7,6 +7,9 @@ var express         = require("express"),
     LocalStrategy   = require("passport-local"),
     methodOverride  = require("method-override"),
     User            = require("./models/user"),
+    async           = require("async"),
+    nodemailer      = require("nodemailer"),
+    crypto          = require("crypto"),
     seedDB          = require("./seeds");
     
 // Requiring Routes
