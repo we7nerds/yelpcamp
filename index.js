@@ -15,7 +15,9 @@ var express         = require("express"),
 // Requiring Routes
 var commentRoutes    = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
-    indexRoutes      = require("./routes/index");
+    indexRoutes      = require("./routes/index"),
+    contactRoutes    = require("./routes/contact");
+    
     
 mongoose.connect(process.env.DATABASEURL);
 app.use(bodyParser.urlencoded({extended: true}));
@@ -48,6 +50,7 @@ app.use(function(req, res, next){
 app.use(indexRoutes);
 app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments",commentRoutes);
+app.use("/contact", contactRoutes);
 
 // =========================================
 // APP LISTENERS
