@@ -1,44 +1,51 @@
 <% include ./partials/header %>
 
-<div class="container">
-
-    <div class="row">
-        
-        <div style="width:40%; margin: 25px auto;">
-        
-            <h1>Sign Up!</h1>
-            
-            <form action="/register" method="POST">
-                <div class="form-group">
-                    <input type="text" name="username" placeholder="username">
-                </div>
-                <div class="form-group">
-                    <input type="password" name="password" placeholder="password">
-                </div>
-                <div class="form-group">
-                    <input type="text" name="firstName" placeholder="first name">
-                </div>
-                <div class="form-group">
-                    <input type="text" name="lastName" placeholder="last name">
-                </div>
-                <div class="form-group">
-                    <input type="email" name="email" placeholder="email@email.com">
-                </div>
-                <div class="form-group">
-                    <input type="text" name="avatar" placeholder="avatar image URL">
-                </div>
-                <div class="form-group">
-                    <input type="password" name="adminCode" placeholder="code word">
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-lg btn-primary">Sign Up</button>
-                </div>
-            </form>
-            
-        </div>
-            
-    </div>
+<div class="row">
     
+    <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+    
+        <h1>Sign Up!</h1>
+        
+        <form action="/register" method="POST">
+            <div class="form-group">
+                <label class="" for="username">User Name</label>
+                <input type="text" class="form-control" name="username" placeholder="username">
+            </div>
+            <div class="form-group">
+                <label class="" for="password">Password</label>
+                <input type="password" class="form-control" name="password" placeholder="password">
+            </div>
+            <div class="form-group">
+                <label class="" for="firstName">First Name</label>
+                <input type="text" class="form-control" name="firstName" placeholder="first name">
+            </div>
+            <div class="form-group">
+                <label class="" for="lastName">Last Name</label>
+                <input type="text" class="form-control" name="lastName" placeholder="last name">
+            </div>
+            <div class="form-group">
+                <label class="" for="email">Email Address</label>
+                <input type="email" class="form-control" name="email" placeholder="email@email.com">
+            </div>
+            <div class="form-group">
+                <label class="" for="avatar">Avatar</label>
+                <input type="text" class="form-control" name="avatar" placeholder="avatar image URL">
+            </div>
+            <div class="form-group">
+                <label class="" for="adminCode">Code (optional)</label>
+                <input type="password" class="form-control" name="adminCode" placeholder="code word">
+            </div>
+            <div class="form-group">
+                <!-- Insert the code for the reCaptcha check box -->
+                <div class="g-recaptcha" data-sitekey="6Lcui0UUAAAAAL9tFoRKTs6b0-KtXYiWktcg2WmH"></div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-lg btn-primary">Sign Up</button>
+            </div>
+        </form>
+        
+    </div>
+        
 </div>
 
 <% include ./partials/footer %>

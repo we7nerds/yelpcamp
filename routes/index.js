@@ -6,6 +6,7 @@ var express         = require("express"),
     User            = require("../models/user"),
     async           = require("async"),
     nodemailer      = require("nodemailer"),
+    request         = require("request"),
     crypto          = require("crypto");
 
 // ROOT ROUTE
@@ -24,6 +25,29 @@ router.get("/register", function(req, res) {
 
 // handle sign up logic
 router.post("/register", function(req, res) {
+    const captcha = req.body["g-recaptcha-response"];
+    if (!captcha) {
+      req.flash("error", "Please select captcha");
+      return res.redirect("back");
+    }
+    // secret key
+    var secretKey = process.env.GOOGLE_CAPCHA_CODE;
+    // Verify URL
+    var verifyURL = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captcha}&remoteip=${req
+      .connection.remoteAddress}`;
+    // Make request to Verify URL
+    request.get(verifyURL, (err, response, body) => {
+      if (err) {
+        console.log(err);
+        return res.redirect("/register");
+      }
+      // if not successful
+      if (body.success !== undefined && !body.success) {
+        req.flash("error", "Captcha Failed");
+        return res.redirect("/register");
+      }
+    });
+    
     var newUser = new User({
         username: req.body.username,
         firstName: req.body.firstName,
